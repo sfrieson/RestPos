@@ -1,0 +1,8 @@
+<h1>Menu</h1>
+<%= form_for @dishes do |f|%>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :price %>
+    <%= f.number :price %>
+
+<% end %>
