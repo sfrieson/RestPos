@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'restaurant#show'
 
   scope '/admin' do
-      resources :users
+      resources :users, :dishes
   end
 
   resources :restaurants

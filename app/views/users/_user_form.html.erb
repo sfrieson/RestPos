@@ -1,9 +1,7 @@
-<%= render 'nav' %>
-<h1>Create New Employee</h1>
 <%= form_for @user do |f| %>
     <%= f.label :username%>
     <%= f.text_field :username %>
-    <%= f.select(:position, @user.positions) %>
+    <%= f.select(:type, @user.types) %>
     <%= f.label :password %>
     <%= f.password_field :password %>
     <%= f.submit %>

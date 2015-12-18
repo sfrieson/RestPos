@@ -1,31 +1,30 @@
 class UsersController < ApplicationController
     before_action :authenticate!
-    # users       GET    /users(.:format)          users#index
+    # users       GET    /admin/users(.:format)          users#index
     def index
         @users = User.all
     end
-    #             POST    /users(.:format)          users#create
+    #             POST    /admin/users(.:format)          users#create
     def create
         user = User.create(user_params)
-        session[:user_id] = user.id
-        redirect_to login_path
+        redirect_to users_path
     end
-    # new_user    GET    /users/new(.:format)      users#new
+    # new_user    GET    /admin/users/new(.:format)      users#new
     def new
         @user = User.new
     end
-    # edit_user   GET    /users/:id/edit(.:format) users#edit
+    # edit_user   GET    /admin/users/:id/edit(.:format) users#edit
     def edit
         @user = User.find(session[:user_id])
     end
-    # user        GET    /users/:id(.:format)      users#show
-    #             PATCH  /users/:id(.:format)      users#update
+    # user        GET    /admin/users/:id(.:format)      users#show
+    #             PATCH  /admin/users/:id(.:format)      users#update
     def update
         current_user.update(user_params)
-        redirect_to login_path
+        redirect_to users_path
     end
-    #             PUT    /users/:id(.:format)      users#update
-    #             DELETE /users/:id(.:format)      users#destroy
+    #             PUT    /admin/users/:id(.:format)      users#update
+    #             DELETE /admin/users/:id(.:format)      users#destroy
     def destroy
     end
 
@@ -33,6 +32,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :password, :type)
+        params.require(:user).permit(:username, :password, :position)
     end
 end

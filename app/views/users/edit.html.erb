@@ -1,10 +1,10 @@
 <%= render 'nav' %>
-<h1>Create New Employee</h1>
+<h1>Edit <%= @user.username %></h1>
 <%= form_for @user do |f| %>
     <%= f.label :username%>
     <%= f.text_field :username %>
     <%= f.select(:position, @user.positions) %>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
     <%= f.submit %>
 <% end %>
+
+<%# Change password link %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217220017) do
+ActiveRecord::Schema.define(version: 20151218201710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20151217220017) do
   add_index "tabletops", ["user_id"], name: "index_tabletops_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "type"
+    t.string   "position"
     t.integer  "pin"
     t.string   "username"
     t.string   "password_digest"
