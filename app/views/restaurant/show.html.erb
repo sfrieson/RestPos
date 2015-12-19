@@ -7,4 +7,12 @@
 <% end %>
 <h1>Parties</h1>
 <%= link_to "New Party", new_party_path %>
+<% @parties.each do |party| %>
+    <p>
+        <%= party.reservation %>, <%= party.size %>, Tables: <% party.tabletops.each do |t| %>
+            <%= t.id.to_i %>
+        <% end %>
+        <%= link_to icon('times'), party_path(party), method: :delete %>
+    </p>
+<% end %>
 <h1>Orders</h1>

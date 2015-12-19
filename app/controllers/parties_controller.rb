@@ -17,7 +17,9 @@ class PartiesController < ApplicationController
         redirect_to root_path
     end
     def destroy
-        Party.destroy(params[:id])
+        party = Party.find(params[:id])
+        restaurant.clear(party)
+        Party.destroy(party)
         redirect_to root_path
     end
 

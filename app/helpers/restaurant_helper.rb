@@ -14,5 +14,13 @@ module RestaurantHelper
         def vacant
             Tabletop.where(occupied: false)
         end
+        def clear(party)
+            party.tabletops.each do |t|
+                t.party = nil
+                t.status = "Dirty"
+                t.occupied = false
+                t.save
+            end
+        end
     end
 end
