@@ -1,0 +1,17 @@
+<%= form_for @dish do |f|%>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+    <%= f.label :course %>
+    <%= f.select(:course, @dish.courses) %>
+    <%= f.check_box :nuts%>
+    <%= f.label :nuts%>
+    <%= f.check_box :dairy%>
+    <%= f.label :dairy%>
+    <%= f.check_box :shellfish%>
+    <%= f.label :shellfish%>
+    <%= f.check_box :vegetarian%>
+    <%= f.label :vegetarian%>
+    <%= f.submit %>
+<% end %>

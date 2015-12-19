@@ -1,8 +1,22 @@
 <h1>Menu</h1>
-<%= form_for @dishes do |f|%>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :price %>
-    <%= f.number :price %>
+<%= render 'dish_form' %>
 
+
+<% Dish.new.courses.each do |course| %>
+    <% if !(@dishes.where(course: "#{course}") == []) %>
+    <% section = @dishes.where(course: "#{course}") %>
+    <h3><%= course %></h3>
+        <% section.each do |dish| %>
+            <div class="dish">
+                <strong><%= dish.name %></strong>,
+                $<%= dish.price.to_f / 100 %> | Contains:
+                <%= "nuts" if dish.nuts %>
+                <%= "dairy" if dish.dairy %>
+                <%= "shellfish" if dish.shellfish %>
+                <%= "meat" if !(dish.vegetarian) %>
+                <%= link_to icon('pencil-square-o'), edit_dish_path(dish) %>
+                <%= link_to icon('times-circle'), dish_path(dish), method: :delete %>
+            </div>
+        <% end %>
+    <% end %>
 <% end %>
