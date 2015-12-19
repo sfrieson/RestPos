@@ -1,1 +1,10 @@
 <h1>Main Action Page</h1>
+<h1>Tables</h1>
+<% @tabletops.each do |table| %>
+    <p>
+        Table <%= table.id.to_s %>: <%= table.occupied ? "Occupied by #{table.party.reservation}" : "Vacant" %>
+    </p>
+<% end %>
+<h1>Parties</h1>
+<%= link_to "New Party", new_party_path %>
+<h1>Orders</h1>

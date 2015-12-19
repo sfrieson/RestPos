@@ -1,0 +1,10 @@
+<h1><%= @party.reservation %>, party of <%= @party.size %></h1>
+Needs <%= @party.tabletops_needed %> table<%= "s" unless @party.tabletops_needed == 1 %>
+<%= link_to "Party Left", party_path(@party), method: :delete %>
+<%= form_for @party do |f|%>
+    <%= f.fields_for :tabletops do |t| %>
+        <%= t.label :id %>
+        <%= t.number_field :id %>
+    <% end %>
+    <%= f.submit %>
+<% end %>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :users, :dishes
   end
 
-  resources :restaurants
+  resources :restaurants, :parties
 
   get       '/login' => 'restaurant#login'
   post      '/sessions' => 'sessions#create'

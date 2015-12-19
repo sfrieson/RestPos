@@ -11,5 +11,8 @@ module RestaurantHelper
         def unseated
             Party.all.reject { |party| party.tabletops.length > 0}
         end
+        def vacant
+            Tabletop.where(occupied: false)
+        end
     end
 end
