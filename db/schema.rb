@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151219020824) do
+ActiveRecord::Schema.define(version: 20151219140613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,13 +60,13 @@ ActiveRecord::Schema.define(version: 20151219020824) do
   end
 
   create_table "tabletops", force: :cascade do |t|
-    t.boolean  "occupied"
-    t.integer  "capacity"
-    t.string   "status"
+    t.integer  "capacity",   default: 2
+    t.string   "status",     default: "clean"
     t.integer  "party_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "occupied",   default: false
   end
 
   add_index "tabletops", ["party_id"], name: "index_tabletops_on_party_id", using: :btree

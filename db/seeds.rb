@@ -5,4 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.create(username: "Gadoe", position: "Manager", password:"admin1")
+
+User.create(username: "Gadoe", position: "Manager", password:"admin1") unless User.find_by_username("Gadoe")
+30.times {Tabletop.create} unless Tabletop.all.length > 1

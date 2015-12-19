@@ -3,7 +3,7 @@ class Party < ActiveRecord::Base
     has_many :orders
     has_many :dishes, through: :orders
     has_many :tabletops
-    
+
     after_initialize :init
     def init
         self.reservation = self.reservation || Faker::Name.last_name

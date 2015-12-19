@@ -1,5 +1,11 @@
 <%= render 'nav' %>
 <h1>Create New Employee</h1>
+<% if flash[:error] %>
+Errors:
+    <% flash[:error].each do |error| %>
+        <p class="error"><%= error %></p>
+    <% end %>
+<% end %>
 <%= form_for @user do |f| %>
     <%= f.label :username%>
     <%= f.text_field :username %>

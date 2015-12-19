@@ -6,4 +6,6 @@ module ApplicationHelper
     def authenticate!
         redirect_to users_path unless current_user
     end
+
+
 end

@@ -7,7 +7,13 @@ class UsersController < ApplicationController
     #             POST    /admin/users(.:format)          users#create
     def create
         user = User.create(user_params)
-        redirect_to users_path
+        if user.save
+            redirect_to users_path
+        else
+
+            flash[:error] = user.errors.full_messages
+            redirect_to new_user_path
+        end
     end
     # new_user    GET    /admin/users/new(.:format)      users#new
     def new
@@ -19,13 +25,16 @@ class UsersController < ApplicationController
     end
     # user        GET    /admin/users/:id(.:format)      users#show
     #             PATCH  /admin/users/:id(.:format)      users#update
+    #             PUT    /admin/users/:id(.:format)      users#update
     def update
         current_user.update(user_params)
         redirect_to users_path
     end
-    #             PUT    /admin/users/:id(.:format)      users#update
+
     #             DELETE /admin/users/:id(.:format)      users#destroy
     def destroy
+        User.destroy(params[:id])
+        redirect_to users_path
     end
 
 

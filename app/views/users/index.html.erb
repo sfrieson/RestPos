@@ -4,7 +4,9 @@
 <ul>
     <% @users.each do |user| %>
         <li>
-            <%= user.username %> <%="| #{user.position}" if user.position%> <%= link_to "Edit", edit_user_path(user) %><%# terminate button  %>
+            <%= user.username %> <%="| #{user.position}" if user.position%> <%= link_to "Edit", edit_user_path(user) %>
+            <%= link_to icon('times'), user_path(user), method: :delete %>
         </li>
+
     <% end %>
 </ul>
