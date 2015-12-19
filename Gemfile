@@ -40,6 +40,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'faker'
 end
 
 group :development do
