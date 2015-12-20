@@ -4,7 +4,7 @@ Needs <%= @party.tabletops_needed %> table<%= "s" unless @party.tabletops_needed
 <%= form_for @party do |f|%>
     <%= f.fields_for :tabletops do |t| %>
         <%= t.label :id %>
-        <%= t.number_field :id %>
+        <%= t.select(:id, restaurant.vacant) %>
     <% end %>
     <%= f.submit %>
 <% end %>

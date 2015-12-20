@@ -6,4 +6,10 @@ class RestaurantController < ApplicationController
         @parties = Party.all
         @orders = Order.all
     end
+    def clean
+        table = Tabletop.find(params[:format])
+        table.status = "clean"
+        table.save
+        redirect_to root_path
+    end
 end

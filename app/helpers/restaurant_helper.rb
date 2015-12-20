@@ -12,12 +12,13 @@ module RestaurantHelper
             Party.all.reject { |party| party.tabletops.length > 0}
         end
         def vacant
-            Tabletop.where(occupied: false)
+            arr = Tabletop.where(occupied: false, status: "clean").sort
+            arr.map { |t| t.id.to_i }
         end
         def clear(party)
             party.tabletops.each do |t|
                 t.party = nil
-                t.status = "Dirty"
+                t.status = "dirty"
                 t.occupied = false
                 t.save
             end

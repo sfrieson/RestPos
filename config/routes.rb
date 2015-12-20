@@ -8,9 +8,10 @@ Rails.application.routes.draw do
       resources :users, :dishes
   end
 
-  resources :restaurants, :parties
+  resources :parties
 
   get       '/login' => 'restaurant#login'
+  get       '/clean' => 'restaurant#clean'
   post      '/sessions' => 'sessions#create'
   delete    '/sessions' => 'sessions#destroy'
 

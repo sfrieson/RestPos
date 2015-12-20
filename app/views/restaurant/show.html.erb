@@ -2,14 +2,18 @@
 <h1>Tables</h1>
 <% @tabletops.each do |table| %>
     <p>
-        Table <%= table.id.to_s %>: <%= table.occupied ? "Occupied by #{table.party.reservation}" : "Vacant" %>
+        Table <%= table.id.to_s %>:
+        <%= table.occupied ? "Occupied by #{table.party.reservation}" : "Vacant" %>
+        <%= "and #{table.status}" unless table.occupied %>
+        <%= link_to icon('tint'), clean_path(table) if table.status == "dirty"%>
     </p>
 <% end %>
 <h1>Parties</h1>
 <%= link_to "New Party", new_party_path %>
 <% @parties.each do |party| %>
     <p>
-        <%= party.reservation %>, <%= party.size %>, Tables: <% party.tabletops.each do |t| %>
+        <%= party.reservation %>, <%= party.size %>,
+        Tables: <% party.tabletops.each do |t| %>
             <%= t.id.to_i %>
         <% end %>
         <%= link_to icon('times'), party_path(party), method: :delete %>
