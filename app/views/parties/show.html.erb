@@ -1,0 +1,19 @@
+<h1><%= @party.reservation %> Party</h1>
+<%= link_to "Home", root_path  %>
+<h3>Order</h3>
+<%= form_for @order, url: party_orders_path(@party) do |f| %>
+    <%= f.collection_select :dish_id, Dish.all, :id, :name %>
+    <%= f.submit %>
+<% end %>
+
+<% if @party.orders.length > 0 %>
+
+    <h3>Tally</h3>
+    <ul>
+        <% @party.orders.each do |order|%>
+            <li>
+                <%= order.dish.name %> | $<%= order.dish.price.to_f/100%>
+            </li>
+        <% end %>
+    </ul>
+<% end %>

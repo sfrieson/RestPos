@@ -9,7 +9,7 @@ module RestaurantHelper
         end
         attr_reader :name
         def unseated
-            Party.all.reject { |party| party.tabletops.length > 0}
+            Party.all.reject { |party| party.tabletops.length > 0 }
         end
         def vacant
             arr = Tabletop.where(occupied: false, status: "clean").sort

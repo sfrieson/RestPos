@@ -16,6 +16,7 @@ class PartiesController < ApplicationController
 
         redirect_to root_path
     end
+
     def destroy
         party = Party.find(params[:id])
         restaurant.clear(party)
@@ -24,9 +25,15 @@ class PartiesController < ApplicationController
     end
 
 
+    def show
+        @party = Party.find(params[:id])
+        @order = Order.new
+    end
+
     private
 
     def party_params
      params.require(:party).permit(tabletops_attributes: [ :id ])
    end
+
 end

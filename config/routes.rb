@@ -8,7 +8,9 @@ Rails.application.routes.draw do
       resources :users, :dishes
   end
 
-  resources :parties
+  resources :parties do
+      resources :orders
+  end
 
   get       '/login' => 'restaurant#login'
   get       '/clean' => 'restaurant#clean'
