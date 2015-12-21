@@ -17,7 +17,6 @@ module RestaurantHelper
         end
         def clear(party)
             party.tabletops.each do |t|
-                t.party = nil
                 t.status = "dirty"
                 t.occupied = false
                 t.save

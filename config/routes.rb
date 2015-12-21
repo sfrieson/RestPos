@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root 'restaurant#show'
 
-  scope '/admin' do
+  scope '/admin' do #allows the URI be prefixed '/admin' without requiring a controller
       resources :users, :dishes
   end
 
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get       '/clean' => 'restaurant#clean'
   post      '/sessions' => 'sessions#create'
   delete    '/sessions' => 'sessions#destroy'
+  put       '/cook' => 'orders#cook'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

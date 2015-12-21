@@ -33,7 +33,7 @@ class PartiesController < ApplicationController
     private
 
     def party_params
-     params.require(:party).permit(tabletops_attributes: [ :id ])
+     params.require(:party).permit(tabletops_attributes: [:id])
    end
 
 end

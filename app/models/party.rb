@@ -1,9 +1,9 @@
 class Party < ActiveRecord::Base
     has_many :guests
-    has_many :orders
+    has_many :orders, dependent: :destroy
     has_many :dishes, through: :orders
-    has_many :tabletops
-    accepts_nested_attributes_for :tabletops
+    has_many :tabletops, dependent: :nullify #takes party_id off table but doesn't delete table
+    accepts_nested_attributes_for :tabletops #allows more than one table to be set at a time for multi-table parties 
 
     after_initialize :init
     def init

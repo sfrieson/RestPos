@@ -22,5 +22,10 @@
 <% end %>
 <h1>Orders</h1>
 <% @orders.each do |order|%>
-    Order of <%= order.dish.name %> for <%= order.party.reservation %>
+    <div>
+        Order of <%= order.dish.name %>
+        for <%= order.party.reservation %>
+        is <%= order.status %>
+        <%= link_to(icon('check'), cook_path(order), method: :put) if order.status == "cooking" %>
+    </div>
 <% end %>
