@@ -12,4 +12,14 @@ class RestaurantController < ApplicationController
         table.save
         redirect_to root_path
     end
+    def host
+        @tabletops = Tabletop.all.sort
+        @parties = Party.all
+    end
+    def server
+        @tabletops = Tabletop.all.sort
+    end
+    def kitchen
+        @orders = Order.where(status: "cooking")
+    end
 end

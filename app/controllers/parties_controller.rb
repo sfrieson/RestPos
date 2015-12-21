@@ -1,10 +1,17 @@
 class PartiesController < ApplicationController
     def new
         @party = Party.create
+
+        #makes a tabletop model for the number of tables they need
         (@party.tabletops_needed).times {@party.tabletops.build}
     end
-    def update
 
+    def edit
+        @party = Party.find(params[:id])
+        (@party.tabletops_needed).times {@party.tabletops.build}
+    end
+
+    def update
         party = Party.find(params[:id])
 
         party_params[:tabletops_attributes].values.each do |target|
