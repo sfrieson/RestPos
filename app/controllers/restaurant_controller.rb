@@ -11,7 +11,7 @@ class RestaurantController < ApplicationController
         table = Tabletop.find(params[:format])
         table.status = "clean"
         table.save
-        redirect_to root_path
+        redirect_to server_index_path
     end
     def host
         #moved to Host#index

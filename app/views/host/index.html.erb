@@ -1,37 +1,46 @@
 <%= stylesheet_link_tag    'host', media: 'all', 'data-turbolinks-track' => true %>
 
 
-<h1>Host Stand</h1>
+<div class="row">
 
-<div class="tables">
-    <% @tabletops.each do |table| %>
-        <% status = table.status %>
-        <% occupied = table.occupied ? "occupied" : "vacant" %>
-        <div class="table <%= status %> <%= occupied  %>">
-            <h3><%= table.id.to_s %></h3>
-            <%= occupied %>
-            <%= "and #{status}" unless table.occupied %>
-            <%= link_to icon('tint'), clean_path(table) if table.status == "dirty"%>
+    <div class="ten columns">
+        <h1>Host Stand</h1>
+        <div class="tables">
+            <% @tabletops.each do |table| %>
+                <% status = table.status %>
+                <% occupied = table.occupied ? "occupied" : "vacant" %>
+
+                <div class="table <%= status %> <%= occupied  %>">
+                    <h3><%= table.id.to_s %></h3>
+                    <%= occupied %>
+                    <%= "and #{status}" unless table.occupied %>
+                    <h3><%= icon('tint') if table.status == "dirty"%></h3>
+                </div>
+                <% if status == "dirty" %>
+                    </a>
+                <% end  %>
+            <% end %>
         </div>
-    <% end %>
-</div>
-<h1>Waitlist</h1>
-<%= link_to "New Party", new_party_path %>
+    </div>
+    <div class="two columns">
+        <h1>Waitlist</h1>
+        <%= link_to "New Party", new_party_path, class: "button button-primary"%>
 
 
-<% if @waitlist.length %>
-    <ol>
-        <% @waitlist.each do |party| %>
-            <li>
-                <%= party.reservation %>, <%= party.size %>,
-                <%= link_to "Seat them", edit_party_path(party) %>
+        <% if @waitlist.length %>
+            <ol>
+                <% @waitlist.each do |party| %>
 
-                <%= link_to icon('times'), party_path(party), method: :delete %>
-            </li>
+                    <li>
+                        <%= party.reservation %>, <%= party.size %>,
+                        <%= link_to "Seat them", edit_party_path(party) %>
+                        <%= link_to icon('times'), party_path(party), method: :delete %>
+                    </li>
+                <% end %>
+            </ol>
         <% end %>
-    </ol>
-<% end %>
-
+    </div>
+</div>
 
 
 <%= javascript_include_tag 'host', 'data-turbolinks-track' => true %>

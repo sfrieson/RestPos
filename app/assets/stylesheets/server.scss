@@ -1,7 +1,9 @@
 // Place all the styles related to the Guests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+.container {
+    width: 90vw;
+}
 .clean {
     background-color: #ddd;
     color: #999
@@ -15,4 +17,10 @@
 .occupied {
     background-color: lightgreen;
     color: black;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    display: inline-block;
 }
