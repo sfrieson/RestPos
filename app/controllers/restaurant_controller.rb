@@ -21,6 +21,6 @@ class RestaurantController < ApplicationController
         @seated = restaurant.seated
     end
     def kitchen
-        @orders = Order.where(status: "cooking")
+        #moved to Kitchen#index
     end
 end

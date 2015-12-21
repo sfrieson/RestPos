@@ -26,7 +26,7 @@
                                     Time placed: <%= order.created_at.hour %>:<%= order.created_at.min %>
                                     </div>
                                     <div class="one column">
-                                        <h3><%= link_to icon('check'), cook_path(@orders[num]), method: :put, class: "receipt" %></h3>
+                                        <h3><%= link_to icon('check'), kitchen_path(@orders[num]), method: :put, class: "receipt" %></h3>
                                     </div>
                                 <% end %>
                         </div>

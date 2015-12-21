@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   root 'restaurant#show'
   get       '/host' => 'restaurant#host'
   get       '/server' => 'restaurant#server'
-  get       '/kitchen' => 'restaurant#kitchen'
+  resources :kitchen  #was get '/kitchen' => 'restaurant#kitchen'
+
 
   scope '/admin' do #allows the URI be prefixed '/admin' without requiring a controller
       resources :users, :dishes
   end
-  
+
 
   resources :parties do
       resources :orders
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   post      '/sessions' => 'sessions#create'
   delete    '/sessions' => 'sessions#destroy'
   put       '/cook' => 'orders#cook'
+  put       '/cook' => 'orders#cook' #duplicated at kitchen#update
 
 
 

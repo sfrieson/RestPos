@@ -1,4 +1,4 @@
-<%= link_to "Home", root_path %> <%= link_to "Party Page", party_path(@party) %>
+<%= icon('times-circle') %>
 <h1><%= restaurant.name %></h1>
 <h5><%= restaurant.address %></h5>
 <h5><%= restaurant.phone %></h5>
@@ -22,5 +22,8 @@ Items:
 <h5>Tax: <%= number_to_currency @receipt[:total][:tax] %></h5>
 <h4>Total: <%= number_to_currency @receipt[:total][:grand] %></h4>
 
-Tip guide<br>
-<%= @receipt[:total][:tip] %>
+<div id="print-clear">
+    Tip guide<br>
+    <%= @receipt[:total][:tip] %>
+</div>
+<div id="print-button">PRINT</div>
