@@ -38,10 +38,21 @@ module RestaurantHelper
         def total(orders)
             @subtotal = 0
             orders.each { |order| @subtotal += order.dish.price }
+
             @tax = (@subtotal * 0.08875).round
             @grand = @subtotal + @tax
 
-            {:subtotal => @subtotal.to_f/100, :tax => @tax.to_f/100, :grand => @grand.to_f/100}
+            #Suggested tip string
+            @tip = "15% = $#{(@subtotal * 0.15).round.to_f/100},
+            18% = $#{(@subtotal * 0.18).round.to_f/100},
+            20% = $#{(@subtotal * 0.20).round.to_f/100}"
+
+            {
+                :subtotal => @subtotal.to_f/100,
+                :tax => @tax.to_f/100,
+                :grand => @grand.to_f/100,
+                :tip => @tip
+            }
         end
 
         def waitlist

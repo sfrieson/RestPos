@@ -21,3 +21,6 @@ Items:
 <h5>Subtotal: <%= number_to_currency @receipt[:total][:subtotal] %></h5>
 <h5>Tax: <%= number_to_currency @receipt[:total][:tax] %></h5>
 <h4>Total: <%= number_to_currency @receipt[:total][:grand] %></h4>
+
+Tip guide<br>
+<%= @receipt[:total][:tip] %>
