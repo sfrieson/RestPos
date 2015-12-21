@@ -13,12 +13,10 @@ class RestaurantController < ApplicationController
         redirect_to root_path
     end
     def host
-        @tabletops = Tabletop.all.sort
-        @waitlist = restaurant.waitlist
+        #moved to Host#index
     end
     def server
-        @tabletops = Tabletop.all.sort
-        @seated = restaurant.seated
+        #moved to Server#index
     end
     def kitchen
         #moved to Kitchen#index

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
   #main views
   root 'restaurant#show'
   resources :host       #was get '/host' => 'restaurant#host'
