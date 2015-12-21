@@ -18,6 +18,7 @@ class RestaurantController < ApplicationController
     end
     def server
         @tabletops = Tabletop.all.sort
+        @seated = restaurant.seated
     end
     def kitchen
         @orders = Order.where(status: "cooking")

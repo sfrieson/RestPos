@@ -1,0 +1,20 @@
+<h1>Order Up!</h1>
+
+<% num = 0 %>
+<% 5.times do %>
+    <div class="row">
+        <% 2.times do %>
+            <div class="six columns">
+                <%= num + 1 %>
+                <% if @orders.length > num %>
+                    <% order = @orders[num] %>
+                    <%= order.dish.name %>
+                    for <%= order.party.reservation %><br>
+                    Time placed: <%= order.created_at.hour %>:<%= order.created_at.min %>
+
+                <% end %>
+            </div>
+            <% num += 1 %>
+        <% end %>
+    </div>
+<% end %>

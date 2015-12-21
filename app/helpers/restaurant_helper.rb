@@ -11,13 +11,7 @@ module RestaurantHelper
             @website = "gadoesnyc.com"
         end
         attr_reader :name, :address, :phone, :website
-        def unseated
-            Party.all.reject { |party| party.tabletops.length > 0 }
-        end
-        def vacant
-            arr = Tabletop.where(occupied: false, status: "clean").sort
-            arr.map { |t| t.id.to_i }
-        end
+
         def clear(party)
             party.tabletops.each do |t|
                 t.status = "dirty"
@@ -35,6 +29,11 @@ module RestaurantHelper
                 }
             end
         end
+
+        def seated
+            Party.all.reject { |party| party.tabletops.length == 0 }
+        end
+
         def total(orders)
             @subtotal = 0
             orders.each { |order| @subtotal += order.dish.price }
@@ -55,13 +54,16 @@ module RestaurantHelper
             }
         end
 
+        # def unseated
+        #     Party.all.reject { |party| party.tabletops.length > 0 }
+        # end
+
+        def vacant
+            arr = Tabletop.where(occupied: false, status: "clean").sort
+            arr.map { |t| t.id.to_i }
+        end
         def waitlist
-            parties = Party.all
-            waitlist = []
-            parties.each do |party|
-                waitlist.push party if party.tabletops.length == 0
-            end
-            waitlist
+            Party.all.reject { |party| party.tabletops.length > 0 }
         end
     end
 end
