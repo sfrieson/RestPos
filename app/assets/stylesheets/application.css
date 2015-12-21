@@ -42,6 +42,13 @@ body {
     height: 80vh;
 
 }
+.close-btn {
+    top: 7.5vh;
+    right: 33.5vw;
+    font-size: 300%;
+    position: absolute;
+    cursor: pointer;
+}
 
 #print-button {
     position: fixed;
