@@ -3,15 +3,18 @@
 
 <h1>Host Stand</h1>
 
-<% @tabletops.each do |table| %>
-    <p>
-        Table <%= table.id.to_s %>:
-        <%= table.occupied ? "Occupied" : "Vacant" %>
-        <%= "and #{table.status}" unless table.occupied %>
-        <%= link_to icon('tint'), clean_path(table) if table.status == "dirty"%>
-    </p>
-<% end %>
-
+<div class="tables">
+    <% @tabletops.each do |table| %>
+        <% status = table.status %>
+        <% occupied = table.occupied ? "occupied" : "vacant" %>
+        <div class="table <%= status %> <%= occupied  %>">
+            <h3><%= table.id.to_s %></h3>
+            <%= occupied %>
+            <%= "and #{status}" unless table.occupied %>
+            <%= link_to icon('tint'), clean_path(table) if table.status == "dirty"%>
+        </div>
+    <% end %>
+</div>
 <h1>Waitlist</h1>
 <%= link_to "New Party", new_party_path %>
 

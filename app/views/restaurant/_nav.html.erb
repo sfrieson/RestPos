@@ -1,5 +1,16 @@
+<nav>
+
+
 <% if current_user  %>
     Hi, <%= current_user.username %> <%= link_to "Logout", sessions_path, method: :delete %>
 <% else %>
     <%= button_to "Login", login_path, method: :get %>
 <% end %>
+<div class="links">
+    <%= link_to "Host Stand", host_index_path %>
+    <%= link_to "Server Portal", server_index_path%>
+    <%= link_to "Kitchen Board", kitchen_index_path%>
+</div>
+
+
+</nav>

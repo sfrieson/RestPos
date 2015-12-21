@@ -1,43 +1,68 @@
 <%= stylesheet_link_tag    'restaurant', media: 'all', 'data-turbolinks-track' => true %>
 <%= render 'nav' %>
 
-<h1>Main Action Page</h1>
-<h1>Tables</h1>
-<% @tabletops.each do |table| %>
-    <p>
-        Table <%= table.id.to_s %>:
-        <%= table.occupied ? "Occupied by #{table.party.reservation}" : "Vacant" %>
-        <%= "and #{table.status}" unless table.occupied %>
-        <%= link_to icon('tint'), clean_path(table) if table.status == "dirty"%>
-    </p>
-<% end %>
+<h1 id="title"><%= restaurant.name %></h1>
+<h2>Tables</h2>
+
+<div class="tables">
+    <% @tabletops.each do |table| %>
+        <% status = table.status %>
+        <% occupied = table.occupied ? "occupied" : "vacant" %>
+        <div class="table <%= status %> <%= occupied  %>">
+            <h3><%= table.id.to_s %></h3>
+            <%= occupied %>
+            <%= "and #{status}" unless table.occupied %>
+        </div>
+    <% end %>
+</div>
+
 <h1>Parties</h1>
-<%= link_to "New Party", new_party_path %>
-<% @parties.each do |party| %>
-    <p>
-        <%= party.reservation %>, <%= party.size %>,
-        <% if party.tabletops.length > 0 %><%# if party is seated  %>
-            Tables: <% party.tabletops.each do |t| %>
-                <%= t.id.to_i %>
-            <% end %>
-            <%= link_to icon('cutlery'), party_path(party) %>
-            <%= link_to icon('print'), party_receipt_path(party), class: "receipt" %>
+
+<div class="row">
+    <div class="six columns">
+        <h4>Waitlist</h4>
+        <% if @waitlist.length > 0 %>
+            <ol>
+                <% @waitlist.each do |party| %>
+                    <li><%= party.reservation %>, <%= party.size %></li>
+                <% end %>
+            </ol>
         <% else %>
-            Waiting for a table... <%= link_to "Seat them", edit_party_path(party) %>
+            Empty
         <% end %>
-
-        <%= link_to icon('times'), party_path(party), method: :delete %>
-    </p>
-<% end %>
-<h1>Current Orders</h1>
-<% @orders.each do |order|%>
-    <div>
-        Order of <%= order.dish.name %>
-        for <%= order.party.reservation %>
-        is <%= order.status %>
-        <%= link_to(icon('check'), cook_path(order), method: :put) %>
     </div>
-<% end %>
 
+    <div class="six columns">
+        <h4>Seated</h4>
+        <% if @seated.length > 0 %>
+            <ul>
+                <% @seated.each do |party| %>
+                    <li>
+                        <%= party.reservation %>, <%= party.size %>,
+                        Tables: <% party.tabletops.each do |t| %>
+                            <%= t.id.to_i %>
+                        <% end %>
+                    </li>
+                <% end %>
+            </ul>
+        <% else %>
+            Empty
+        <% end %>
+    </div>
+</div>
+
+
+<h1>Kitchen queue</h1>
+<% if @queue.length > 0 %>
+    <% @queue.each do |order|%>
+        <div>
+            Order of <%= order.dish.name %>
+            for <%= order.party.reservation %>
+            is <%= order.status %>
+        </div>
+    <% end %>
+<% else %>
+    Empty
+<% end %>
 
 <%= javascript_include_tag 'restaurant', 'data-turbolinks-track' => true %>

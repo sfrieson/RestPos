@@ -3,8 +3,9 @@ class RestaurantController < ApplicationController
     end
     def show
         @tabletops = Tabletop.all.sort #make sure tables are in order for showing
-        @parties = Party.all
-        @orders = Order.where(status: "cooking")
+        @waitlist = restaurant.waitlist
+        @seated = restaurant.seated
+        @queue = Order.where(status: "cooking")
     end
     def clean
         table = Tabletop.find(params[:format])

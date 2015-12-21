@@ -4,12 +4,15 @@
 
 <h1>Server Portal</h1>
 <% @tabletops.each do |table| %>
-    <p>
-        Table <%= table.id.to_s %>:
+
+    <% status = table.status %>
+    <% occupied = table.occupied ? "occupied" : "vacant" %>
+    <div class="table <%= status %> <%= occupied  %>">
+        <h3><%= table.id.to_s %></h3>
         <%= table.occupied ? "Occupied by #{table.party.reservation}" : "" %>
-        <%= "#{table.status}" unless table.occupied %>
+        <%= "#{status}" unless table.occupied %>
         <%= link_to icon('tint'), clean_path(table) if table.status == "dirty"%>
-    </p>
+    </div>
 <% end %>
 
 <h1>Parties</h1>
