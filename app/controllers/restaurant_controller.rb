@@ -14,7 +14,7 @@ class RestaurantController < ApplicationController
     end
     def host
         @tabletops = Tabletop.all.sort
-        @parties = Party.all
+        @waitlist = restaurant.waitlist
     end
     def server
         @tabletops = Tabletop.all.sort

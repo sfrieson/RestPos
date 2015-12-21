@@ -1,0 +1,27 @@
+<h1>Host Stand</h1>
+
+<% @tabletops.each do |table| %>
+    <p>
+        Table <%= table.id.to_s %>:
+        <%= table.occupied ? "Occupied" : "Vacant" %>
+        <%= "and #{table.status}" unless table.occupied %>
+        <%= link_to icon('tint'), clean_path(table) if table.status == "dirty"%>
+    </p>
+<% end %>
+
+<h1>Waitlist</h1>
+<%= link_to "New Party", new_party_path %>
+
+
+<% if @waitlist.length %>
+    <ol>
+        <% @waitlist.each do |party| %>
+            <li>
+                <%= party.reservation %>, <%= party.size %>,
+                <%= link_to "Seat them", edit_party_path(party) %>
+
+                <%= link_to icon('times'), party_path(party), method: :delete %>
+            </li>
+        <% end %>
+    </ol>
+<% end %>

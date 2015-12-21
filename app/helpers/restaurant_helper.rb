@@ -40,7 +40,17 @@ module RestaurantHelper
             orders.each { |order| @subtotal += order.dish.price }
             @tax = (@subtotal * 0.08875).round
             @grand = @subtotal + @tax
+
             {:subtotal => @subtotal.to_f/100, :tax => @tax.to_f/100, :grand => @grand.to_f/100}
+        end
+
+        def waitlist
+            parties = Party.all
+            waitlist = []
+            parties.each do |party|
+                waitlist.push party if party.tabletops.length == 0
+            end
+            waitlist
         end
     end
 end
