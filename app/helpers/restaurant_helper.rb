@@ -43,8 +43,8 @@ module RestaurantHelper
 
             #Suggested tip string
             @tip = "15% = $#{(@subtotal * 0.15).round.to_f/100},
-            18% = $#{(@subtotal * 0.18).round.to_f/100},
-            20% = $#{(@subtotal * 0.20).round.to_f/100}"
+            20% = $#{(@subtotal * 0.20).round.to_f/100},
+            25% = $#{(@subtotal * 0.25).round.to_f/100}"
 
             {
                 :subtotal => @subtotal.to_f/100,

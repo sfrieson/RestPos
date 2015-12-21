@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag    'host', media: 'all', 'data-turbolinks-track' => true %>
+
+
 <h1>Host Stand</h1>
 
 <% @tabletops.each do |table| %>
@@ -25,3 +28,7 @@
         <% end %>
     </ol>
 <% end %>
+
+
+
+<%= javascript_include_tag 'host', 'data-turbolinks-track' => true %>

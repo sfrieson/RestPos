@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag    'restaurant', media: 'all', 'data-turbolinks-track' => true %>
+
+
 <h1>Main Action Page</h1>
 <h1>Tables</h1>
 <% @tabletops.each do |table| %>
@@ -18,7 +21,7 @@
                 <%= t.id.to_i %>
             <% end %>
             <%= link_to icon('cutlery'), party_path(party) %>
-            <%= link_to icon('print'), party_receipt_path(party) %>
+            <%= link_to icon('print'), party_receipt_path(party), class: "receipt" %>
         <% else %>
             Waiting for a table... <%= link_to "Seat them", edit_party_path(party) %>
         <% end %>
@@ -35,3 +38,6 @@
         <%= link_to(icon('check'), cook_path(order), method: :put) %>
     </div>
 <% end %>
+
+
+<%= javascript_include_tag 'restaurant', 'data-turbolinks-track' => true %>

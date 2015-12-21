@@ -10,9 +10,35 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
  *= require normalize
  *= require skeleton
+ *= require restaurant
 
  */
+* {
+    box-sizing: border-box;
+}
+iframe {
+    border: none;
+}
+body {
+    position: relative;
+}
+
+.modal-bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position:fixed;
+    top: 0;
+    left: 0;
+
+}
+.modal {
+    margin: 10vh 35vw;
+    width: 30vw;
+    background-color: white;
+    height: 80vh;
+
+}

@@ -1,20 +1,43 @@
-<h1>Order Up!</h1>
+<%= stylesheet_link_tag    'kitchen', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'kitchen', 'data-turbolinks-track' => true %>
 
-<% num = 0 %>
-<% 5.times do %>
-    <div class="row">
-        <% 2.times do %>
-            <div class="six columns">
-                <%= num + 1 %>
-                <% if @orders.length > num %>
-                    <% order = @orders[num] %>
-                    <%= order.dish.name %>
-                    for <%= order.party.reservation %><br>
-                    Time placed: <%= order.created_at.hour %>:<%= order.created_at.min %>
+<table class="orders u-full-width">
+    <thead>
+        <th>
+            <h1>Order Up!</h1>
+        </th>
 
+    </thead>
+    <tbody>
+        <% num = 0 %>
+        <% 5.times do %>
+            <tr>
+                <% 2.times do %>
+                    <td class="order" data-time="<%= @orders[num].created_at if @orders[num] %>">
+                        <div class="row">
+                            <div class="one column">
+                                <%= num + 1 %>
+                            </div>
+                            <div class="ten columns">
+                                <% if @orders.length > num %>
+                                    <h2><% order = @orders[num] %>
+                                    <%= order.dish.name %></h2>
+                                    for <%= order.party.reservation %><br>
+                                    Time placed: <%= order.created_at.hour %>:<%= order.created_at.min %>
+                                    </div>
+                                    <div class="one column">
+                                        <h3><%= link_to icon('check'), cook_path(@orders[num]), method: :put, class: "receipt" %></h3>
+                                    </div>
+                                <% end %>
+                        </div>
+                    </td>
+                    <% num += 1 %>
                 <% end %>
-            </div>
-            <% num += 1 %>
+            </tr>
         <% end %>
-    </div>
-<% end %>
+
+    </tbody>
+
+</table>
+
+<%= button_to "Home", root_path, method: :get, class: "nav button button-primary" %>
