@@ -1,0 +1,23 @@
+<%= link_to "Home", root_path %> <%= link_to "Party Page", party_path(@party) %>
+<h1><%= restaurant.name %></h1>
+<h5><%= restaurant.address %></h5>
+<h5><%= restaurant.phone %></h5>
+<h5><%= restaurant.website %></h5>
+<hr>
+
+<h3><%= @party.reservation %> Receipt</h3>
+Items:
+<% @receipt[:orders].each do |order| %>
+    <p>
+        <%= order[:name] %>
+        |  <%= number_to_currency order[:qty_price]/100 %>
+        <% if order[:qty] > 1 %>
+            <br>
+            Qty: <%= order[:qty] %> @ <%= number_to_currency order[:price]/100 %>
+        <% end %>
+    </p>
+<% end %>
+<hr>
+<h5>Subtotal: <%= number_to_currency @receipt[:total][:subtotal] %></h5>
+<h5>Tax: <%= number_to_currency @receipt[:total][:tax] %></h5>
+<h4>Total: <%= number_to_currency @receipt[:total][:grand] %></h4>

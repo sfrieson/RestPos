@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :parties do
       resources :orders
+      get '/receipt' => 'parties#receipt'
   end
 
   get       '/login' => 'restaurant#login'

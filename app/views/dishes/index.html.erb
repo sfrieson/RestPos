@@ -9,7 +9,8 @@
         <% section.each do |dish| %>
             <div class="dish">
                 <strong><%= dish.name %></strong>,
-                $<%= dish.price.to_f / 100 %> | Contains:
+                <%= number_to_currency dish.price.to_f / 100 %> |
+                Contains:
                 <%= "nuts" if dish.nuts %>
                 <%= "dairy" if dish.dairy %>
                 <%= "shellfish" if dish.shellfish %>

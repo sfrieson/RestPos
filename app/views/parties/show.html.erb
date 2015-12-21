@@ -7,12 +7,11 @@
 <% end %>
 
 <% if @party.orders.length > 0 %>
-
-    <h3>Tally</h3>
+    <h3>Tab <%= link_to icon('print'), party_receipt_path(@party) %></h3>
     <ul>
         <% @party.orders.each do |order|%>
             <li>
-                <%= order.dish.name %> | $<%= order.dish.price.to_f/100%>
+                <%= order.dish.name %> | <%= number_to_currency order.dish.price.to_f/100%>
             </li>
         <% end %>
     </ul>
