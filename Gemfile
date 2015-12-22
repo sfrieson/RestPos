@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'font-awesome-sass'
+gem 'faker'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -40,7 +41,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'pry-rails'
   gem 'rspec-rails'
-  gem 'faker'
+
 end
 
 group :development do

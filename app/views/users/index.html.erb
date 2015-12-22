@@ -1,6 +1,6 @@
 <%= render 'nav' %>
 <h1>Employees</h1>
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New User', new_user_path, class: "button" %><%= link_to 'Menu', dishes_path, class: "button" %>
 <ul>
     <% @users.each do |user| %>
         <li>

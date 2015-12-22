@@ -1,23 +1,32 @@
-<h1>Menu</h1>
-<%= render 'dish_form' %>
+<%= render 'nav' %>
+<div class="row">
+    <div class="five columns">
+        <h3>New Item</h3>
+            <%= render 'dish_form' %>
+    </div>
 
+    <div class="seven columns">
+        <h1>Menu</h1>
+        <% Dish.new.courses.each do |course| %>
+            <% if !(@dishes.where(course: "#{course}") == []) %>
+            <% section = @dishes.where(course: "#{course}") %>
+            <h3><%= course %></h3>
+                <% section.each do |dish| %>
+                    <div class="dish">
+                        <strong><%= dish.name %></strong>,
+                        <%= number_to_currency dish.price.to_f / 100 %> |
+                        Contains:
+                        <%= "nuts" if dish.nuts %>
+                        <%= "dairy" if dish.dairy %>
+                        <%= "shellfish" if dish.shellfish %>
+                        <%= "meat" if !(dish.vegetarian) %>
+                        <%= link_to icon('pencil-square-o'), edit_dish_path(dish) %>
+                        <%= link_to icon('times-circle'), dish_path(dish), method: :delete %>
+                    </div>
 
-<% Dish.new.courses.each do |course| %>
-    <% if !(@dishes.where(course: "#{course}") == []) %>
-    <% section = @dishes.where(course: "#{course}") %>
-    <h3><%= course %></h3>
-        <% section.each do |dish| %>
-            <div class="dish">
-                <strong><%= dish.name %></strong>,
-                <%= number_to_currency dish.price.to_f / 100 %> |
-                Contains:
-                <%= "nuts" if dish.nuts %>
-                <%= "dairy" if dish.dairy %>
-                <%= "shellfish" if dish.shellfish %>
-                <%= "meat" if !(dish.vegetarian) %>
-                <%= link_to icon('pencil-square-o'), edit_dish_path(dish) %>
-                <%= link_to icon('times-circle'), dish_path(dish), method: :delete %>
-            </div>
+                <% end %>
+                <hr>
+            <% end %>
         <% end %>
-    <% end %>
-<% end %>
+    </div>
+</div>
