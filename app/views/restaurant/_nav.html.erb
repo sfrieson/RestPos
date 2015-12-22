@@ -6,11 +6,11 @@
 <% else %>
     <%= button_to "Login", login_path, method: :get, class: "button-primary" %>
 <% end %>
-<div class="links">
-    <%= link_to "Host Stand", host_index_path %>
-    <%= link_to "Server Portal", server_index_path%>
-    <%= link_to "Kitchen Board", kitchen_index_path%>
-</div>
+    <%= link_to "Host Stand", host_index_path, class: "links" %>
+    <%= link_to "Server Portal", server_index_path, class: "links"%>
+    <%= link_to "Kitchen Board", kitchen_index_path, class: "links"%>
+    <%= link_to "Admin", users_path, class: "links"%>
+
 
 
 </nav>

@@ -1,5 +1,5 @@
 <h1><%= @party.reservation %> Party</h1>
-<%= link_to "Home", root_path  %>
+<%= link_to "Server Page", server_index_path  %>
 <h3>Order</h3>
 <%= form_for @order, url: party_orders_path(@party) do |f| %>
     <%= f.collection_select :dish_id, Dish.all, :id, :name %>

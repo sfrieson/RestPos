@@ -9,6 +9,11 @@ class KitchenController < ApplicationController
         redirect_to kitchen_index_path
     end
 
+    def destroy
+        Order.destroy(params[:id])
+        redirect_to kitchen_index_path
+    end
+
 
     private
 

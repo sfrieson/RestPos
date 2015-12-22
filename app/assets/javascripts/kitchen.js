@@ -19,7 +19,7 @@ $(document).ready(function(){
             order.css('background-color', 'yellow')
         } else if (elapsed < min*2) {
             order.css('background-color', 'orange')
-        } else if (elapsed > min*3) {
+        } else if (elapsed > min*2) {
             order.css('background-color', 'red')
         }
     }
