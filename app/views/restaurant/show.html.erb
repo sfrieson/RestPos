@@ -16,53 +16,59 @@
     <% end %>
 </div>
 
-<h1>Parties</h1>
-
 <div class="row">
-    <div class="six columns">
-        <h4>Waitlist</h4>
-        <% if @waitlist.length > 0 %>
-            <ol>
-                <% @waitlist.each do |party| %>
-                    <li><%= party.reservation %>, <%= party.size %></li>
-                <% end %>
-            </ol>
-        <% else %>
-            Empty
-        <% end %>
-    </div>
+    <div class="two-thirds column">
+        <h1>Parties</h1>
 
-    <div class="six columns">
-        <h4>Seated</h4>
-        <% if @seated.length > 0 %>
-            <ul>
-                <% @seated.each do |party| %>
-                    <li>
-                        <%= party.reservation %>, <%= party.size %>,
-                        Tables: <% party.tabletops.each do |t| %>
-                            <%= t.id.to_i %>
+        <div class="row">
+            <div class="six columns">
+                <h4>Waitlist</h4>
+                <% if @waitlist.length > 0 %>
+                    <ol>
+                        <% @waitlist.each do |party| %>
+                            <li><%= party.reservation %>, <%= party.size %></li>
                         <% end %>
-                    </li>
+                    </ol>
+                <% else %>
+                    Empty
                 <% end %>
-            </ul>
+            </div>
+
+            <div class="six columns">
+                <h4>Seated</h4>
+                <% if @seated.length > 0 %>
+                    <ul>
+                        <% @seated.each do |party| %>
+                            <li>
+                                <%= party.reservation %>, <%= party.size %>,
+                                Tables: <% party.tabletops.each do |t| %>
+                                    <%= t.id.to_i %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                <% else %>
+                    Empty
+                <% end %>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="one-third column">
+        <h1>Kitchen queue</h1>
+        <% if @queue.length > 0 %>
+            <% @queue.each do |order|%>
+                <div>
+                    Order of <%= order.dish.name %>
+                    for <%= order.party.reservation %>
+                    is <%= order.status %>
+                </div>
+            <% end %>
         <% else %>
             Empty
         <% end %>
     </div>
 </div>
-
-
-<h1>Kitchen queue</h1>
-<% if @queue.length > 0 %>
-    <% @queue.each do |order|%>
-        <div>
-            Order of <%= order.dish.name %>
-            for <%= order.party.reservation %>
-            is <%= order.status %>
-        </div>
-    <% end %>
-<% else %>
-    Empty
-<% end %>
 
 <%= javascript_include_tag 'restaurant', 'data-turbolinks-track' => true %>

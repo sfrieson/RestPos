@@ -1,13 +1,14 @@
 class PartiesController < ApplicationController
     def new
         @party = Party.create
-
+        @tabletops = Tabletop.all.sort
         #makes a tabletop model for the number of tables they need
         (@party.tabletops_needed).times {@party.tabletops.build}
     end
 
     def edit
         @party = Party.find(params[:id])
+        @tabletops = Tabletop.all.sort
         (@party.tabletops_needed).times {@party.tabletops.build}
     end
 
@@ -21,14 +22,14 @@ class PartiesController < ApplicationController
             table.save
         end
 
-        redirect_to root_path
+        redirect_to host_index_path
     end
 
     def destroy
         party = Party.find(params[:id])
         restaurant.clear(party)
         Party.destroy(party)
-        redirect_to root_path
+        redirect_to server_index_path
     end
 
 

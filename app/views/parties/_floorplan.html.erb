@@ -1,0 +1,26 @@
+
+    <div class="row">
+        <div class="four columns">
+            <h1>Floorplan </h1>
+        </div>
+        <div class="eight columns">
+            <h3> <%= link_to "Back", host_index_path, class: "button" %></h3>
+        </div>
+    </div>
+
+    <div class="tables">
+        <% @tabletops.each do |table| %>
+            <% status = table.status %>
+            <% occupied = table.occupied ? "occupied" : "vacant" %>
+
+            <div class="table <%= status %> <%= occupied  %>">
+                <h3><%= table.id.to_s %></h3>
+                <%= occupied %>
+                <%= "and #{status}" unless table.occupied %>
+                <h3><%= icon('tint') if table.status == "dirty"%></h3>
+            </div>
+            <% if status == "dirty" %>
+                </a>
+            <% end  %>
+        <% end %>
+    </div>

@@ -1,10 +1,8 @@
-<h1><%= @party.reservation %>, party of <%= @party.size %></h1>
-Needs <%= @party.tabletops_needed %> table<%= "s" unless @party.tabletops_needed == 1 %>
-<%= link_to "Party Left", party_path(@party), method: :delete %>
-<%= form_for @party do |f|%>
-    <%= f.fields_for :tabletops do |t| %>
-        <%= t.label :id %>
-        <%= t.select(:id, restaurant.vacant) %>
-    <% end %>
-    <%= f.submit %>
-<% end %>
+<div class="row">
+    <div class="ten columns">
+        <%= render 'floorplan' %>
+    </div>
+    <div class="two columns">
+        <%= render 'seating_form' %>
+    </div>
+</div>

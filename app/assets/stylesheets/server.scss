@@ -1,6 +1,16 @@
 // Place all the styles related to the Guests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+a {
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+}
+
+.buttons {
+    font-size: 25px;
+    letter-spacing: .3em;
+}
 .container {
     width: 90vw;
 }
@@ -13,14 +23,40 @@
     background-color: brown;
     color: black;
 }
-
+.mobile {
+    display: none;
+}
 .occupied {
     background-color: lightgreen;
     color: black;
 }
 
-a {
-    text-decoration: none;
-    color: black;
-    display: inline-block;
+
+
+.party {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0;
+}
+.party:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 550px) {
+    a {
+        display: inline;
+    }
+    .table{
+        display:block;
+        width: 100%;
+        border-radius: 0%;
+        height:50px;
+    }
+    .table *{
+        display: inline-block;
+        margin: 0 5px;
+    }
+    .mobile {
+        display: inline-block;
+    }
 }

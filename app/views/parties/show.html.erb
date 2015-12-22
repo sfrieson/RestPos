@@ -7,7 +7,7 @@
 <% end %>
 
 <% if @party.orders.length > 0 %>
-    <h3>Tab <%= link_to icon('print'), party_receipt_path(@party) %></h3>
+    <h3>Tab <%= link_to icon('print'), party_receipt_path(@party), class: "receipt" %></h3>
     <ul>
         <% @party.orders.each do |order|%>
             <li>
@@ -16,3 +16,5 @@
         <% end %>
     </ul>
 <% end %>
+
+<%= javascript_include_tag 'server', 'data-turbolinks-track' => true %>
