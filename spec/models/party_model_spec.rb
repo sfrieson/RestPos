@@ -7,11 +7,11 @@ RSpec.describe Party, :type => :model do
           Party.create
       end
       describe "and is not yet seated" do
-          it "is found on a list by calling restaurant.unseated" do
+          it "is found on a list by calling restaurant.waitlist" do
               other_party = Party.create()
               Tabletop.create({party: other_party})
 
-              actual = restaurant.unseated.length
+              actual = restaurant.waitlist.length
               desired = 1
               expect(actual).to eq(desired)
           end

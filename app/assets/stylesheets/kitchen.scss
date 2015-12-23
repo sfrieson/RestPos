@@ -1,6 +1,21 @@
 // Place all the styles related to the Dishes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+a {
+    color: lightgreen;
+}
+.comment {
+    text-transform: uppercase;
+}
+h1, h2 {
+    margin: 0;
+}
+input.nav {
+    position: fixed;
+    top: 0;
+    right: 50px;
+}
+
 
 .orders {
     background-color: lightyellow;
@@ -30,16 +45,4 @@ td {
 }
 th:first-child, th:last-child, td:first-child, td:last-child { //Overwrites Skeleton styling
     padding: 10px;
-}
-h1, h2 {
-    margin: 0;
-}
-input.nav {
-    position: fixed;
-    top: 0;
-    right: 50px;
-}
-
-a {
-    color: lightgreen;
 }

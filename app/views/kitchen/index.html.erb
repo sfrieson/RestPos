@@ -4,7 +4,9 @@
 <table class="orders u-full-width">
     <thead>
         <th>
-            <h1>Order Up!</h1>
+            <h1><%= Time.zone.now.strftime("%I:%M") %></h1>
+            <% num = 1323431223 %>
+            
         </th>
 
     </thead>
@@ -22,8 +24,12 @@
                                 <% if @orders.length > num %>
                                     <h2><% order = @orders[num] %>
                                     <%= order.dish.name %></h2>
-                                    for <%= order.party.reservation %><br>
-                                    Time placed: <%= order.created_at.hour %>:<%= order.created_at.min %>
+
+                                    <div class="comment"><%= order.comment %></div>
+
+
+                                    for <%= order.party.reservation %>  |
+                                    Placed at: <%= order.created_at.strftime("%I:%M") %>
                                     </div>
                                     <div class="one column">
                                         <h3><%= link_to icon('check'), kitchen_path(@orders[num]), method: :put %></h3>

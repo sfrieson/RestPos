@@ -7,16 +7,22 @@ var modalBg = $('<div>').addClass('modal-bg')
 var receipts = $('.receipt')
 receipts.on('click', function(e) {
     e.preventDefault()
+    console.log(e);
 
     var modal = $('<div>')
-
     modalBg.append(closeBtn);
-    modalBg.on('click', function(){modal.remove()});
-    $(closeBtn).on('click', function(){modal.remove()});
+
     var a = $(e.currentTarget);
     var path = a.attr('href');
     var iframe = $('<iframe>').attr('src', path).addClass('modal');
+
     modalBg.append(iframe);
     modal.append(modalBg);
     $('body').append(modal);
+    modalBg.on('click', remove);
+    $(closeBtn).on('click', remove);
+    function remove() {
+        iframe.remove();
+        modal.remove();
+    }
 });

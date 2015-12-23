@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
         party.orders.create(order_params)
         redirect_to party_path(party)
     end
-    
+
 
     def cook
         order = Order.find(params[:format])
@@ -15,6 +15,6 @@ class OrdersController < ApplicationController
     private
 
     def order_params
-        params.require(:order).permit(:dish_id)
+        params.require(:order).permit(:dish_id, :comment)
     end
 end

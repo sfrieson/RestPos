@@ -1,3 +1,4 @@
+<% currency = @party.currency %>
 <h1><%= restaurant.name %></h1>
 <h5><%= restaurant.address %></h5>
 <h5><%= restaurant.phone %></h5>
@@ -9,17 +10,17 @@ Items:
 <% @receipt[:orders].each do |order| %>
     <p>
         <%= order[:name] %>
-        |  <%= number_to_currency order[:qty_price]/100 %>
+        |  <%= restaurant.get_currency order[:qty_price], currency %>
         <% if order[:qty] > 1 %>
             <br>
-            Qty: <%= order[:qty] %> @ <%= number_to_currency order[:price]/100 %>
+            Qty: <%= order[:qty] %> @ <%= restaurant.get_currency order[:price], currency %>
         <% end %>
     </p>
 <% end %>
 <hr>
-<h5>Subtotal: <%= number_to_currency @receipt[:total][:subtotal] %></h5>
-<h5>Tax: <%= number_to_currency @receipt[:total][:tax] %></h5>
-<h4>Total: <%= number_to_currency @receipt[:total][:grand] %></h4>
+<h5>Subtotal: <%= restaurant.get_currency @receipt[:total][:subtotal], currency %></h5>
+<h5>Tax: <%= restaurant.get_currency @receipt[:total][:tax], currency %></h5>
+<h4>Total: <%= restaurant.get_currency @receipt[:total][:grand], currency %></h4>
 
 <div id="print-clear">
     Tip guide<br>

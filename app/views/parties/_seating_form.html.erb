@@ -1,5 +1,8 @@
-<h1><%= @party.reservation %>, party of <%= @party.size %></h1>
+<h1><%= @party.reservation %></h1>
+<h3>party of <%= @party.size %></h3>
+<%= "Requests to use #{@party.currency}" if @party.currency == "euro" %>
 Needs <%= @party.tabletops_needed %> table<%= "s" unless @party.tabletops_needed == 1 %>
+
 <%= link_to "Party Left", party_path(@party), method: :delete %>
 <%= form_for @party do |f|%>
     <%= f.fields_for :tabletops do |t| %>

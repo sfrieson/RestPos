@@ -11,5 +11,20 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe RestaurantHelper, type: :helper do
- # pending "add some examples to (or delete) #{__FILE__}"
+  describe "when given value in cents" do
+      it "converts to a string with two decimal places, commas, and dollar sign " do
+          num = 123400
+          actual = restaurant.get_currency(num)
+          desired = "$1,234.00"
+
+          expect(actual).to eq(desired)
+      end
+      it "multiplies by exhange rate, converts to a string with spaces, comma, and euro symbol " do
+          num = 123400
+          actual = restaurant.get_currency(num, "euro")
+          desired = "1 126,52 €"
+
+          expect(actual).to eq(desired)
+      end
+  end
 end

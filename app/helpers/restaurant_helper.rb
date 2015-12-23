@@ -12,6 +12,8 @@ module RestaurantHelper
         end
         attr_reader :name, :address, :phone, :website
 
+
+
         def clear(party)
             party.tabletops.each do |t|
                 t.status = "dirty"
@@ -19,6 +21,22 @@ module RestaurantHelper
                 t.save
             end
         end
+
+        def get_currency(num, currency = "usd")
+            av = ActionView::Base.new
+
+            if currency == "euro"
+                num = num.to_f * 0.9129
+                num = num.round(2)
+                num = num/100
+                return (av.number_to_currency num, unit: "€", separator: ",", delimiter: " ", format: "%n %u").to_s
+            else
+                num = num.to_f/100
+                return (av.number_to_currency num).to_s
+            end
+        end
+
+
         def itemize(dishes)
             dishes.uniq.map do |dish|
                 {
@@ -34,7 +52,7 @@ module RestaurantHelper
             Party.all.reject { |party| party.tabletops.length == 0 }
         end
 
-        def total(orders)
+        def total(orders, currency)
             @subtotal = 0
             orders.each { |order| @subtotal += order.dish.price }
 
@@ -42,21 +60,17 @@ module RestaurantHelper
             @grand = @subtotal + @tax
 
             #Suggested tip string
-            @tip = "15% = $#{(@subtotal * 0.15).round.to_f/100},
-            20% = $#{(@subtotal * 0.20).round.to_f/100},
-            25% = $#{(@subtotal * 0.25).round.to_f/100}"
+            @tip = "15% = #{self.get_currency (@subtotal * 0.15), currency},
+            20% = #{self.get_currency (@subtotal * 0.20), currency},
+            25% = #{self.get_currency (@subtotal * 0.25), currency}"
 
             {
-                :subtotal => @subtotal.to_f/100,
-                :tax => @tax.to_f/100,
-                :grand => @grand.to_f/100,
+                :subtotal => @subtotal,
+                :tax => @tax,
+                :grand => @grand,
                 :tip => @tip
             }
         end
-
-        # def unseated
-        #     Party.all.reject { |party| party.tabletops.length > 0 }
-        # end
 
         def vacant
             arr = Tabletop.where(occupied: false, status: "clean").sort

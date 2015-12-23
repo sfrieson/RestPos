@@ -41,7 +41,7 @@ class PartiesController < ApplicationController
     def receipt
         @party = Party.find(params[:party_id])
         party_dishes = restaurant.itemize(@party.dishes)
-        party_total = restaurant.total(@party.orders)
+        party_total = restaurant.total(@party.orders, @party.currency)
         @receipt = { :orders => party_dishes, :total => party_total }
     end
 

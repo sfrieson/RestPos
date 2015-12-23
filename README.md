@@ -47,14 +47,14 @@ A smaller subset can be created in the future to reduce this reliance.
 ## Structure
 
 #### Database
-![ERD](/public/planning/RestPosErd-01.png)
+![ERD](/public/planning/RestPosErd-01.png){height: 20px}
 *Entity Relation Diagram*
 
 
 Routing
 
 Design
-![ERD](/public/planning/wireframe_sketch.gif)
+![Rough Wireframes](/public/planning/wireframe_sketch.gif)
 *Rough original wireframes*
 ___
 
@@ -62,13 +62,15 @@ ___
 
 #### Known Issues
 * Order placed time on Kitchen screens
-* Floating delete on menu item
+
 
 #### Future Improvements
 * Allergies
 * Phone improvements
 * Credit Card Payment
 * Give the Server Portal access to the full menu.
+* Easter Eggs
+* Server pin and access
 
 
 

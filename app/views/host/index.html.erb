@@ -41,7 +41,7 @@
 
                     <li>
                         <%= party.reservation %>, <%= party.size %>
-                        <%= link_to icon('times'), party_path(party), method: :delete %><br>
+                        <%= link_to icon('times'), host_path(party), method: :delete %><br>
                         <%= link_to "Seat party", edit_party_path(party) %>
 
                     </li>

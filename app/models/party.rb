@@ -9,6 +9,8 @@ class Party < ActiveRecord::Base
     def init
         self.reservation = self.reservation || Faker::Name.last_name
         self.size = self.size || rand(1..8)
+        self.currency = self.currency || rand(1..4) == 1 ? "euro" : "usd" #25% chance they use euro
+        self.save
     end
 
     def tabletops_needed
