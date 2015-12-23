@@ -1,15 +1,65 @@
 <% if flash[:error] %>
-Errors:
+<div class="error">
+    Errors:
     <% flash[:error].each do |error| %>
-        <p class="error"><%= error %></p>
+        <p><%= error %></p>
     <% end %>
+</div>
 <% end %>
 
 <%= form_for @user do |f| %>
-    <%= f.label :username%>
-    <%= f.text_field :username %>
-    <%= f.select(:type, @user.types) %>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    <%= f.submit %>
+    <div class="row">
+
+        <div class="four columns">
+
+
+            <%= f.label :first_name%>
+            <%= f.text_field :first_name, class: "u-full-width"%>
+        </div>
+        <div class="four columns">
+
+            <%= f.label :last_name%>
+            <%= f.text_field :last_name, class: "u-full-width"%>
+        </div>
+        <div class="four columns">
+
+            <%= f.label :position%>
+            <%= f.select(:position, @user.positions, {}, {class: "u-full-width"}) %>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="four columns">
+
+            <%= f.label :pin%>
+            <%= f.password_field :pin, placeholder: "Default 1111", class: "u-full-width"%>
+        </div>
+        <div class="four columns">
+
+            <%= f.label :username, readonly: true, class: "manager" %>
+            <%= f.text_field :username, placeholder: "Asst. Manager and above", readonly: true, class: "manager u-full-width" %>
+        </div>
+        <div class="four columns">
+
+            <%= f.label :password, readonly: true, class: "manager"  %>
+            <%= f.password_field :password, placeholder: "Asst. Manager and above", readonly: true, class: "manager u-full-width" %>
+        </div>
+
+        </div>
+    <div class="row">
+
+        <div class="four columns">
+
+            <%= f.label :cellphone%>
+            <%= f.text_field :cellphone, class: "u-full-width"%>
+        </div>
+        <div class="four columns">
+            <%= f.label :submit, class: "hide-field" %>
+            <%= f.submit %>
+        </div>
+    </div>
+
 <% end %>
+
+<%= javascript_include_tag 'users', 'data-turbolinks-track' => true %>

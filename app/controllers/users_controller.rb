@@ -6,6 +6,12 @@ class UsersController < ApplicationController
     end
     #             POST    /admin/users(.:format)          users#create
     def create
+        if params[:user][:username]== ""
+            user = params[:user]
+            user[:username] = "#{user[:first_name].camelize(:lower)}.#{user[:last_name].camelize(:lower)}"
+            user[:password] = "#{user[:first_name].camelize(:lower)}1"
+        end
+        binding.pry
         user = User.create(user_params)
         if user.save
             redirect_to users_path
@@ -17,17 +23,25 @@ class UsersController < ApplicationController
     end
     # new_user    GET    /admin/users/new(.:format)      users#new
     def new
-        @user = User.new
+        if current_user.position == "Manager"
+            @user = User.new
+        else
+            redirect_to users_path
+        end
     end
     # edit_user   GET    /admin/users/:id/edit(.:format) users#edit
     def edit
-        @user = User.find(session[:user_id])
+        if current_user.position == "Manager"
+            @user = User.find(params[:id])
+        else
+            redirect_to users_path
+        end
     end
     # user        GET    /admin/users/:id(.:format)      users#show
     #             PATCH  /admin/users/:id(.:format)      users#update
     #             PUT    /admin/users/:id(.:format)      users#update
     def update
-        current_user.update(user_params)
+        User.find(params[:id]).update(user_params)
         redirect_to users_path
     end
 
@@ -41,6 +55,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :password, :position)
+        params.require(:user).permit(:username, :password, :position, :pin, :first_name, :last_name, :cellphone)
     end
 end

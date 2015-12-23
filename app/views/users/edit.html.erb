@@ -1,11 +1,6 @@
 <%= render 'nav' %>
 <h1>Edit <%= @user.username %></h1>
-<%= form_for @user do |f| %>
-    <%= f.label :username%>
-    <%= f.text_field :username %>
-    <%= f.select(:position, @user.positions) %>
-    <%= f.submit %>
-<% end %>
+<%= render 'user_form' %>
 
 
 <%# Change password link %>

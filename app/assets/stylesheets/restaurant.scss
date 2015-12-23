@@ -20,6 +20,22 @@ body {
     cursor: pointer;
 }
 
+.error {
+    box-shadow: 0 0 5px 0 black;
+    background-color: red;
+    border: 3px solid white;
+    border-radius: 5px;
+    font-size: 1.5em;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.hide-field {
+    opacity: 0;
+}
+
 iframe {
     border: none;
     min-width: 300px;
@@ -95,7 +111,9 @@ nav * {
     display: inline-block;
     margin: 5px 10px;
 }
-
+[readonly] {
+    opacity: .3;
+}
 #title {
     padding-top: 85px;
 }

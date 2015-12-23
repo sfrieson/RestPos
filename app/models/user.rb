@@ -9,8 +9,10 @@ class User < ActiveRecord::Base
 
 
     has_secure_password
-    validates :username, uniqueness: true
+    validates :username, uniqueness: {case_sensitive: false}
+    validates :first_name, presence: true
+    validates :last_name, presence: true
     def positions
-        ["Manager", "Assistant Manager"]
+        ["Waiter", "Busser", "Chef", "Manager", "Asst. Manager"]
     end
 end
